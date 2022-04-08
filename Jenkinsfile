@@ -32,17 +32,12 @@ pipeline {
 		   sh 'cp -r target/*.jar docker'
            }
         }
-        /* 
-        stage('Build docker image') {
-           steps {
-               script {         
-                 def customImage = docker.build('initsixcloud/petclinic', "./docker")
-                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                 customImage.push("${env.BUILD_NUMBER}")
-                 }                     
-           }
+        stage('Building image') {
+           steps{
+           script {
+           dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
         }
-	  }
-    */  
+      }
+    }
     }
 }
