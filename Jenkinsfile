@@ -3,14 +3,14 @@ pipeline {
     tools {
       maven 'maven-jenkins'
       jdk 'JDK-11-jenkins'
-    environment {
+    environment{
         AWS_ACCOUNT_ID="466243422136"
         AWS_DEFAULT_REGION="ap-south-1" 
         IMAGE_REPO_NAME="devops-pipeline"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"	    
     }
-    stages {
+    stages{
         stage('Logging into AWS ECR') {
             steps {
                 script {
@@ -18,7 +18,7 @@ pipeline {
                 }
              }
         }	    
-    stages {      
+    stages{      
         stage('Build maven ') {
             steps { 
                     sh 'pwd'      
