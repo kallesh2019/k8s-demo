@@ -3,6 +3,7 @@ pipeline {
     tools {
       maven 'maven-jenkins'
       jdk 'JDK-11-jenkins'
+    }
     environment{
         AWS_ACCOUNT_ID="466243422136"
         AWS_DEFAULT_REGION="ap-south-1" 
