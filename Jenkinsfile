@@ -46,6 +46,22 @@ pipeline {
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
          }
         }
-      }    
+      }
+	    stage('Deploy App on k8s') {
+           steps {
+            sshagent(['ssh-k8s-master']) {
+            sh "scp -o StrictHostKeyChecking=no java-app-deploymenet ec2-user@15.206.145.14:/home/ec2-user"
+			/*
+            script {
+                try{
+                  sh "ssh ec2-user@15.206.145.14 kubectl create -f ."
+                }catch(error){
+                    sh "ssh ec2-user@15.206.145.14 kubectl create -f ."
+            }
+}
+        }
+      /*
+    }
+}  
     }
 }
