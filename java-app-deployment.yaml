@@ -31,6 +31,6 @@ spec:
     app: k8sapp
   type: LoadBalancer
   ports:
-  - nodeport: 32750
+  - name: http
     targetPort: 8080
     port: 8080
