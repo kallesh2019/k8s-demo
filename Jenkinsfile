@@ -9,7 +9,8 @@ pipeline {
         AWS_DEFAULT_REGION="ap-south-1" 
         IMAGE_REPO_NAME="devops-pipeline"
         IMAGE_TAG="latest"
-        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"	    
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"	
+        EMAIL_TO = 'kalleshdevops@gmail.com'		
     }
     stages{
         stage('Logging into AWS ECR') {
@@ -63,3 +64,28 @@ pipeline {
 }  
     }
 }
+post
+{ 
+  always
+  { 
+    cleanWs()
+	sh "echo This will always run"
+	}
+	sucess
+	{ 
+	script
+	{
+	 sh "echo This will always run"
+	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", subject: 'Build Success in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
+	 }
+  }
+  	failure
+	{ 
+	script
+	{
+	 sh "echo This will always run"
+	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", subject: 'Build failure in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
+	 }
+  }
+ }
+} 
