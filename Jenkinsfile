@@ -76,7 +76,7 @@ post
 	script
 	{
 	 sh "echo This will always run"
-	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", subject: 'Build Success in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
+	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", body: 'Build Success in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
 	 }
   }
   	failure
@@ -84,7 +84,7 @@ post
 	script
 	{
 	 sh "echo This will always run"
-	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", subject: 'Build failure in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
+	 email subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", body: 'Build failure in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
 	 }
   }
  }
