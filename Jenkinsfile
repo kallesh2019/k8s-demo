@@ -71,20 +71,9 @@ post
     cleanWs()
 	sh "echo This will always run"
 	}
-	sucess
-	{ 
-	script
-	{
-	 sh "echo This will always run"
-	 emailext subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", body: 'Build Success in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
-	 }
-  }
-  	failure
-	{ 
-	script
-	{
-	 sh "echo This will always run"
-	 emailext subject: "Build ${BUILD_NUMBER} status report for '${env.JOB_NAME}'", body: 'Build failure in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',to: "${EMAIL_TO}"
-	 }
-  }
- }
+	post {
+        always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }
+}
