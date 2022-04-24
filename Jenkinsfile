@@ -64,16 +64,4 @@ pipeline {
 }  
     }
 }
-post
-{ 
-  always
-  { 
-    cleanWs()
-	sh "echo This will always run"
-	}
-	post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }
-}
+
