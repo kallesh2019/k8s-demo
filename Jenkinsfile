@@ -2,12 +2,12 @@ pipeline {
   agent any
     tools {
       maven 'maven-jenkins'
-      jdk 'JDK-11-jenkins'
+      jdk 'jdk-11-jenkins'
     }
     environment{
         AWS_ACCOUNT_ID="466243422136"
         AWS_DEFAULT_REGION="ap-south-1" 
-        IMAGE_REPO_NAME="demo25-04-2022"
+        IMAGE_REPO_NAME="demo06072022"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"	
         EMAIL_TO = 'kalleshdevops@gmail.com'		
