@@ -7,7 +7,7 @@ pipeline {
     environment{
         AWS_ACCOUNT_ID="466243422136"
         AWS_DEFAULT_REGION="ap-south-1" 
-        IMAGE_REPO_NAME="demo06072022"
+        IMAGE_REPO_NAME="demo0k8s"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"	
         EMAIL_TO = 'kalleshdevops@gmail.com'		
